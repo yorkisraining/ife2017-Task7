@@ -8,14 +8,18 @@ let p = Observer.prototype;
 p.walk = function(obj) {
 	let val;
 	for (let key in obj) {
+		//判断obj是否有key属性
 		if (obj.hasOwnProperty(key)) {
-			val = obj[key];
+			//如果有赋值给val
+			val = obj[key]; 
 		}
+		//把键和值传给convert
 		this.convert(key, val);
 	}
 };
 
 p.convert = function(key, val) {
+	//Object.defineProperty(obj, prop, descriptor)
 	Object.defineProperty(this.data, key, {
 		enumerable: true,
 		configurable: true,
@@ -41,3 +45,4 @@ let app2 = new Observer({
 	university: 'bupt',
 	major: 'computer'
 });
+
